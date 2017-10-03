@@ -43,5 +43,10 @@ public class ShopDaoImpl implements ShopDao{
 			}
 		}
 	}
+	
+	public void getLatLongFromShopAddress(String address,String postCode)
+	{
+		
+	}
 
 }
