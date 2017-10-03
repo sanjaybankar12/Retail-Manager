@@ -60,9 +60,15 @@ public class ShopDaoImpl implements ShopDao{
 	}
 	
 	@Override
-	public String getLatLongFromShopAddress(String address,String postCode,String googleGeoUrl,String googleApiKey) throws Exception
+	public Map<String,String> getLatLongFromShopAddress(String address,String postCode,String googleGeoUrl,String googleApiKey) throws Exception
 	{
-		String googleApiLink=googleGeoUrl+"address="+address+"&components=postal_code:"+postCode+"&key="+googleApiKey;
+		Map<String,String> latlng=new HashMap<>();
+		String trimAddress="";
+		for(char ch:address.toCharArray())
+		{
+			trimAddress+=(ch==' ')?"":ch;
+		}
+		String googleApiLink=googleGeoUrl+"address="+trimAddress+"&components=postal_code:"+postCode+"&key="+googleApiKey;
 		
 		URL url=new URL(googleApiLink);
 		HttpURLConnection huc=(HttpURLConnection)url.openConnection();
@@ -86,12 +92,13 @@ public class ShopDaoImpl implements ShopDao{
 				xPathExp=xPath.compile("//geometry/location/lng");
 				String lng=xPathExp.evaluate(document,XPathConstants.STRING).toString();
 			
+				latlng.put("latitude", lat);
+				latlng.put("longitude", lng);
+				
 				msg=lat+"_"+lng;
-			}
-			
-			
+			}			
 		}
-		return msg;
+		return latlng;
 	}
 
 }

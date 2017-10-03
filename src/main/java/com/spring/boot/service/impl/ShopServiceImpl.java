@@ -29,7 +29,7 @@ public class ShopServiceImpl implements ShopService{
 	}
 
 	@Override
-	public String getLatLongFromShopAddress(String address, String postCode,String googleGeoUrl,String googleApiKey) throws Exception {
+	public Map<String,String> getLatLongFromShopAddress(String address, String postCode,String googleGeoUrl,String googleApiKey) throws Exception {
 		// TODO Auto-generated method stub
 		return ShopDao.getLatLongFromShopAddress(address, postCode,googleGeoUrl,googleApiKey);
 	}

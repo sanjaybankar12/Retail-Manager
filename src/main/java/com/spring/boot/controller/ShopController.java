@@ -1,5 +1,6 @@
 package com.spring.boot.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Level;
@@ -46,16 +47,18 @@ public class ShopController {
 	@PostMapping(value="/shops")
 	public @ResponseBody ResponseEntity addShop(@RequestBody Shop shop)
 	{
-		String latlong="";
+		Map<String,String> latlng=new HashMap<>();
 		try{
 			 String shopDetails=shop.getShopAddress().getNumber();
 			 String postCode=shop.getShopAddress().getPostCode();
-			 latlong=shopService.getLatLongFromShopAddress(shopDetails, postCode,googleGeoUrl,googleApiKey);
+			 latlng=shopService.getLatLongFromShopAddress(shopDetails, postCode,googleGeoUrl,googleApiKey);
 		}catch(Exception e){
 			Logger.getLogger(ShopController.class).log(Level.ERROR,"Exception occur while getting lat & long :"+e);
 		}
+		
+		shop.setLatitude(latlng.getOrDefault("latitude","No Latitude Found"));
+		shop.setLongitude(latlng.getOrDefault("longitude","No Longitude Found"));
 		 Map responseMap=shopService.addShop(shop);
-		 responseMap.put("msg",latlong);
 		 if(responseMap.containsKey("OldShopDetails"))
 		 {
 			 return new ResponseEntity(responseMap,HttpStatus.OK);
