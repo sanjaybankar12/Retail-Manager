@@ -38,6 +38,8 @@ public class ShopController {
 	public @ResponseBody ResponseEntity addShop(@RequestBody Shop shop)
 	{
 		
+		 String latlong=shopService.getLatLongFromShopAddress(shop.getShopAddress(), postCode)
+		
 		 Map responseMap=shopService.addShop(shop);
 		 if(responseMap.containsKey("OldShopDetails"))
 		 {

@@ -28,4 +28,10 @@ public class ShopServiceImpl implements ShopService{
 		return ShopDao.addShop(shop);
 	}
 
+	@Override
+	public String getLatLongFromShopAddress(String address, String postCode) {
+		// TODO Auto-generated method stub
+		return ShopDao.getLatLongFromShopAddress(address, postCode);
+	}
+
 }
