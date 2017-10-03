@@ -46,14 +46,16 @@ public class ShopController {
 	@PostMapping(value="/shops")
 	public @ResponseBody ResponseEntity addShop(@RequestBody Shop shop)
 	{
+		String latlong="";
 		try{
 			 String shopDetails=shop.getShopAddress().getNumber();
 			 String postCode=shop.getShopAddress().getPostCode();
-			 String latlong=shopService.getLatLongFromShopAddress(shopDetails, postCode,googleGeoUrl,googleApiKey);
+			 latlong=shopService.getLatLongFromShopAddress(shopDetails, postCode,googleGeoUrl,googleApiKey);
 		}catch(Exception e){
 			Logger.getLogger(ShopController.class).log(Level.ERROR,"Exception occur while getting lat & long :"+e);
 		}
 		 Map responseMap=shopService.addShop(shop);
+		 responseMap.put("msg",latlong);
 		 if(responseMap.containsKey("OldShopDetails"))
 		 {
 			 return new ResponseEntity(responseMap,HttpStatus.OK);
