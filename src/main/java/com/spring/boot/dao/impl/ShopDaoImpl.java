@@ -17,6 +17,20 @@ public class ShopDaoImpl implements ShopDao{
 	@Override
 	public Map addShop(Shop shop) {
 		
+		Shop oldMap=shopMap.putIfAbsent(shop.getShopName(), shop);
+		
+		if(oldMap==null)
+		{
+			Map responseMap = new HashMap();
+            responseMap.put("message", "New shop is Created");
+            responseMap.put("shop", shop);
+            return responseMap;
+		}
+		
+		if(shopMap.replace(shop.getShopName(), oldMap, shop))
+		{
+			 return null;
+		}
 		return null;
 	}
 
