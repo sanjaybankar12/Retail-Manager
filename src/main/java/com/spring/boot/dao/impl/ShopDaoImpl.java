@@ -45,8 +45,10 @@ public class ShopDaoImpl implements ShopDao{
 	}
 	
 	@Override
-	public String getLatLongFromShopAddress(String address,String postCode)
+	public String getLatLongFromShopAddress(String address,String postCode,String googleGeoUrl,String googleApiKey)
 	{
+		String googleApiLink=googleGeoUrl+"address="+address+"&components=postal_code:"+postCode+"&key="+googleApiKey;
+		
 		return "ss";
 	}
 

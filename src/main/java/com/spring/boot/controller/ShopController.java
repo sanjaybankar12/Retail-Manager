@@ -2,7 +2,10 @@ package com.spring.boot.controller;
 
 import java.util.Map;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +31,12 @@ public class ShopController {
 		this.shopService = shopService;
 	}
 	
+	@Value("${google.geo.url}")
+	private String googleGeoUrl;
+	
+	@Value("${google.api.key}")
+	private String googleApiKey;
+	
 	@GetMapping(value="/getshops")
 	public @ResponseBody String getShops()
 	{
@@ -37,9 +46,13 @@ public class ShopController {
 	@PostMapping(value="/shops")
 	public @ResponseBody ResponseEntity addShop(@RequestBody Shop shop)
 	{
-		
-		 String latlong=shopService.getLatLongFromShopAddress(shop.getShopAddress(), postCode)
-		
+		try{
+			 String shopDetails=shop.getShopAddress().getNumber();
+			 String postCode=shop.getShopAddress().getPostCode();
+			 String latlong=shopService.getLatLongFromShopAddress(shopDetails, postCode,googleGeoUrl,googleApiKey);
+		}catch(Exception e){
+			Logger.getLogger(ShopController.class).log(Level.ERROR,"Exception occur while getting lat & long :"+e);
+		}
 		 Map responseMap=shopService.addShop(shop);
 		 if(responseMap.containsKey("OldShopDetails"))
 		 {

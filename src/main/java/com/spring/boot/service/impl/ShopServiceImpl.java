@@ -29,9 +29,9 @@ public class ShopServiceImpl implements ShopService{
 	}
 
 	@Override
-	public String getLatLongFromShopAddress(String address, String postCode) {
+	public String getLatLongFromShopAddress(String address, String postCode,String googleGeoUrl,String googleApiKey) {
 		// TODO Auto-generated method stub
-		return ShopDao.getLatLongFromShopAddress(address, postCode);
+		return ShopDao.getLatLongFromShopAddress(address, postCode,googleGeoUrl,googleApiKey);
 	}
 
 }
