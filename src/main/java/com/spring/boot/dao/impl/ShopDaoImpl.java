@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -102,12 +103,33 @@ public class ShopDaoImpl implements ShopDao{
 	}
 
 	@Override
-	public Shop getNearByShops(double latitude, double longitude) {
+	public Shop getNearByShops(double custLatitude, double custLongitude) {
 		// TODO Auto-generated method stub
-		Shop shop=new Shop();
-		shop.setLatitude(latitude+"");
-		shop.setLongitude(longitude+"");
-		return shop;
+		Collection<Shop> shops =shopMap.values();
+		double minDist=-1;
+		String shopName="";
+		for(Shop shop:shops)
+		{
+			try{
+			double shopLatitude=Double.parseDouble(shop.getLatitude());
+			double shopLongitude=Double.parseDouble(shop.getLongitude());
+			
+			double dist=findDistance(custLatitude,custLongitude,shopLatitude,shopLongitude);
+			
+			if(minDist<0){
+				minDist=dist;
+				shopName=shop.getShopName();
+			}
+			if(minDist>dist){
+				minDist=dist;
+				shopName=shop.getShopName();
+			}				
+			
+			}catch(Exception e){ }
+						
+		}
+		
+		return shopMap.get(shopName);
 	}
 	
 	/**
