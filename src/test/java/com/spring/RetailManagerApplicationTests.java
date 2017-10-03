@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.spring.boot.model.Shop;
@@ -17,14 +17,13 @@ import com.spring.boot.service.impl.ShopServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RetailManagerApplicationTests {
-
-	@LocalServerPort
-	private int servePort;
+public class RetailManagerApplicationTests {	
+	
+	@Autowired	
+	private ShopService shopService;
 	
 	@Test
 	public void contextLoads() {
-		ShopService shopService = new ShopServiceImpl();
 		
 		ShopAddress shopAdr=new ShopAddress();
 		shopAdr.setNumber("Relience Mart,Kharadi");
@@ -36,7 +35,7 @@ public class RetailManagerApplicationTests {
 		
 		Map firstShop = shopService.addShop(shop);
 		
-		assertEquals(firstShop.containsKey("RelienceMart"),true);
+		assertEquals(firstShop.containsKey("OldShopDetails"),false);
 
 	}
 
