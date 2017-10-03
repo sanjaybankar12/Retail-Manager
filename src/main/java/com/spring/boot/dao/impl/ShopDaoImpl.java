@@ -109,5 +109,20 @@ public class ShopDaoImpl implements ShopDao{
 		shop.setLongitude(longitude+"");
 		return shop;
 	}
+	
+	/**
+	* This method used find distance between two points
+	* 6371 is earth radius in km apprx
+	*/
+	public double findDistance(double startLat,double startLng,double endLat,double endLng)
+	{
+		double dLat=Math.toRadians(endLat-startLat);
+		double dLng=Math.toRadians(endLng-startLng);
+		
+		double a=Math.pow(Math.sin(dLat/2), 2)+Math.cos(Math.toRadians(startLat))*Math.cos(Math.toRadians(endLat))*Math.pow(Math.sin(dLng/2), 2);
+		double c=2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		
+		return 6371*c;
+	}
 
 }
