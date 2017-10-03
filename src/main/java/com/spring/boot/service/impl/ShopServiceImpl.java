@@ -34,4 +34,10 @@ public class ShopServiceImpl implements ShopService{
 		return ShopDao.getLatLongFromShopAddress(address, postCode,googleGeoUrl,googleApiKey);
 	}
 
+	@Override
+	public Shop getNearByShops(double latitude, double longitude) {
+		// TODO Auto-generated method stub
+		return ShopDao.getNearByShops(latitude, longitude);
+	}
+
 }

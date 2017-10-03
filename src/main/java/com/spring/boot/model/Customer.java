@@ -2,21 +2,20 @@ package com.spring.boot.model;
 
 public class Customer {
 
-	private double latitude;
-    private double longitude;
-    
-	public double getLatitude() {
-		return latitude;
+	private double customerLatitude;
+    private double customerLongitude;
+	public double getCustomerLatitude() {
+		return customerLatitude;
 	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
+	public void setCustomerLatitude(double customerLatitude) {
+		this.customerLatitude = customerLatitude;
 	}
-	public double getLongitude() {
-		return longitude;
+	public double getCustomerLongitude() {
+		return customerLongitude;
 	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public void setCustomerLongitude(double customerLongitude) {
+		this.customerLongitude = customerLongitude;
 	}
-    
+    	
     
 }

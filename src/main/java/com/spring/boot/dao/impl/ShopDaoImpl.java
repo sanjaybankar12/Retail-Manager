@@ -101,4 +101,13 @@ public class ShopDaoImpl implements ShopDao{
 		return latlng;
 	}
 
+	@Override
+	public Shop getNearByShops(double latitude, double longitude) {
+		// TODO Auto-generated method stub
+		Shop shop=new Shop();
+		shop.setLatitude(latitude+"");
+		shop.setLongitude(longitude+"");
+		return shop;
+	}
+
 }

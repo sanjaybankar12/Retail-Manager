@@ -3,6 +3,8 @@ package com.spring.boot.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.boot.model.Customer;
 import com.spring.boot.model.Shop;
 import com.spring.boot.service.ShopService;
 
@@ -68,6 +71,18 @@ public class ShopController {
 			 return new ResponseEntity(responseMap,HttpStatus.CREATED);
 		 }
 		 
+	}
+	
+	@GetMapping(value="/nearestshop")
+	public @ResponseBody ResponseEntity getNearestShop(@Valid Customer customer)
+	{
+		Shop shop=shopService.getNearByShops(customer.getCustomerLatitude(),customer.getCustomerLongitude());
+		
+		if(shop==null){
+			return new ResponseEntity(shop,HttpStatus.NO_CONTENT);
+		}else{
+			return new ResponseEntity(shop,HttpStatus.FOUND);
+		}
 	}
 	
 }
