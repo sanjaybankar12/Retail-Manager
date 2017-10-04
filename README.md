@@ -21,9 +21,16 @@ and for normal command prompt you have to use as(not prefix './') :
 >gradlew build
 
 Now after this command build directory is created with lots of sub-directories which mainly contains following directories as :
--classes = compile classes
--reports = test reports details
--libs = jar files of project
+      
+     1) classes = compile classes
+     2) reports = test reports details
+     3) libs = jar files of project
+
+Finally, you have to run project by using command on Git Bash as : 
+>./gradlew run
+
+and for normal command prompt you have to use as(not prefix './') :
+>gradlew run
 
 Use Following URL to add shops :
 > http://localhost:3000/shops
