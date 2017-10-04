@@ -11,8 +11,14 @@ First you can clone this project from github by using command as :
 
 or download as a zip file and unzip it.
 
-After cloning or unziping it, open Git Bash if not have you can use our command prompt otherwise download Git Bash from link given below : 
+After cloning or unzipping it, Open Git Bash if not available then you can use our normal command prompt otherwise download Git Bash from link given below : 
 >https://git-scm.com/download/
+
+Go to the project root folder by Git Bash or normal command prompt, then you have to use gradle wrapper to build your project for that you have to use command on Git Bash as :
+>./gradlew build
+
+and for normal command prompt you have to use as(not prefix './') :
+>gradlew build
 
 Use Following URL to add shops :
 > http://localhost:3000/shops
