@@ -6,6 +6,11 @@ Requirements :
     JDK Version=1.7 or later,
     gradle version=4.2 (optional)
 
+First you can clone this project from github by using command as :
+>git clone https://github.com/sanjaybankar12/Retail-Manager.git
+
+or download as a zip file and unzip it.
+
 Use Following URL to add shops :
 > http://localhost:3000/shops
 
