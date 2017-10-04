@@ -2,9 +2,9 @@
 
 Requirements :
 
-  Spring Boot Version=2.0.0
-  JDK Version=1.7 or later
-  gradle version=4.2 (optional)
+    Spring Boot Version=2.0.0,
+    JDK Version=1.7 or later,
+    gradle version=4.2 (optional)
 
 Use Following URL to add shops :
 > http://localhost:3000/shops
